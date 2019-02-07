@@ -1,0 +1,31 @@
+\subsubsection{The Central Server}
+\noindent Through this project, we propose that the central sever should meet the following requirements:
+
+\begin{itemize}
+    \item Communication between the server and the client requires appropriate network protocols, such as the http protocol.
+    \item The synchronizer, as the name implies, it needs to support multiple users to simultaneously access and edit. It should be noted that not only multiple mobile users can operate synchronously, but also users for the desktop and mobile terminals need to be able to implement synchronously operations.
+    \item In order to achieve the synchronization mechanism, we choose to use the Operation Transformation algorithm(which will be explained later), which may need to compress the data.
+\end{itemize}
+
+
+\subsubsection{The Clients}
+\noindent Through this project, we propose that the clients should meet the following requirements:
+
+\begin{itemize}
+    \item We aim to develop two clients, one for the desktop, which is supposed to be a background utility. Another one is for the iOS system, which is supposed to be a stand-alone application, but as that if we want to run the iOS application in a real terminal, it will involve some complicated registration and application, etc. In order to save time and improve the efficiency, we choose to develop this within a simulator.
+    \item The underlying programming language that does this is java.
+
+ 
+\end{itemize}
+
+    
+ \noindent To sum up, our goal is to do a similar procedure like Dropbox, as long as one user modifies the content, there will be a prompt in the application. When other users use the it, they will receive a prompt or notification, indicating that others have modified the document, and then update the document synchronously to the user's terminal.
+
+
+
+%server
+
+
+%client
+
+%ios端 底层是用java写的
