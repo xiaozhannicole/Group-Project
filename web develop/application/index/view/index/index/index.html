@@ -1,0 +1,110 @@
+  {extend name='./common/father' /}
+  {block name='mid'} 
+
+
+
+  <div class="row">
+      <div class="col s12">This div is 12-columns wide on all screen sizes</div>
+      <div class="col s3">
+		<table class="card-panel teal lighten-2">
+        <tbody >
+          <tr >
+            <td>
+            <button>create</button></td>
+          </tr>
+          <tr>
+            <td><button>open</button></td>
+          </tr>
+          <tr>
+            <td><button>friend</button></td>
+          </tr>
+        </tbody>
+      </table>
+	<a class="btn-floating pulse"><i class="material-icons">menu</i></a>
+	<a class="btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
+	<a class="btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+
+	  <div >
+       <table>
+        <thead>
+          <tr>
+              <th>{$username}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+          </tr>
+        </tbody>
+      </table>   
+	   
+	  </div>
+	 
+      </div>
+
+
+
+
+
+      <div class="col s9">
+      <table class="striped">
+	        <thead>
+	          <tr>
+	              <th>Name</th>
+	              <th>Item Name</th>
+	              <th>Last Update</th>
+	          </tr>
+	        </thead>
+
+	        <tbody>
+	          <tr>
+	            <td>{$username}</td>
+	            <td>
+                <a href="/edit">{$filename}
+                </a>
+              </td>
+	            <td>{$lastupdate}</td>
+	          </tr>
+	          <tr>
+	            <td>Alan</td>
+	            <td>Jellybean</td>
+	            <td>1 day</td>
+	          </tr>
+	          <tr>
+	            <td>Jonathan</td>
+	            <td>Lollipop</td>
+	            <td>1 day</td>
+	          </tr>
+	        </tbody>
+	</table>
+     <!-- Scaled in -->
+	<!-- 
+    <form name="postForm" action="../controller/upload.php" method="post" enctype="multipart/form-data">
+    Upload file：
+    <input name="myFile" type="file" value="choose file" />
+   
+    <input name="subBtn" type="submit" value="Upload" />
+    </form>
+     -->
+     <form action="index/upload" method="post" enctype="multipart/form-data">
+          <input type="file" name="file"/>
+          <input type="submit" value="上传"/>
+
+
+
+      </div>
+    </div>
+	
+      <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
+    {/block}
+ 
+  </html>
+        
