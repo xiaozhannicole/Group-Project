@@ -1,5 +1,15 @@
   {extend name='./common/father' /}
   {block name='mid'} 
+  <script>
+function get_user_tall() {
+    var tall = prompt("请输入您的身高（厘米）","178");
+    if (tall != null){
+        alert("您的身高为" + tall +"厘米");
+    }else{
+        alert("你按了[取消]按钮");
+    }
+}
+</script>
   <div class="row">
       <div class="col s3">
 		<table class="card-panel teal lighten-5">
@@ -12,8 +22,21 @@
           </tr>
           <tr>
             <td>last update:{$lastupdate}</td>
-            
           </tr>
+          <tr>
+            <td>coodinator:{$coodinator}</td>
+          </tr>
+          {if session('uid')}  
+           <form action="edit/add_co">
+             <input type="hidden" name="file_ini_id" value={$file_ini_id} />
+           <tr>
+            <td><a href="javascript:get_user_tall()">add coodinator(by username):</a>
+            <input type="text" name="coodinator">
+            <button>add</button>
+          </td> 
+          </tr>
+          </form>
+          {/if}
         </tbody>
       </table>
 
@@ -22,19 +45,19 @@
        <table>
         <thead>
           <tr>
-              <th>update history</th>
+              <th>file id</th>
+              <th>update user</th>
+              <th>update time</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-          </tr>
+          {volist name="old_version" id="vo" }
+            <tr>
+                  <td><a href="./edit?fileid={$vo.file_id}">{$vo.file_id}</a></td>
+                  <td>{$vo.update_usr}</td> 
+                  <td>{$vo.update_time}</td>
+            {/volist}
+            </tr>  
         </tbody>
       </table>   
 	   
@@ -43,10 +66,16 @@
   </div>
   <form action="edit/update" method="GET|POST">
     <div class="col s9" >
-    <input type="text"name="file_id" value={$file_id} readonly="true">
+    <input type="hidden" name="file_id" value={$file_id} />
+    <input type="hidden" name="pre_id_1" value={$pre_id} />
+    <input type="hidden" name="file_ini_id" value={$file_ini_id} />
+    <input type="hidden" name="creator" value={$creator} />
+    <h5>filename:</h5>
+    <input type="text" name="filename_update" value={$filename} />
+    <h5>content:</h5>
     <textarea name="content_update">{$content}</textarea>
     <button class="btn btn-primary btn-block">upload</button>
-    </form>
+  </form>
  
 
 
