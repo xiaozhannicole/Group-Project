@@ -18,14 +18,13 @@ class Register extends Controller
 		$validate = validate::make([
 			'username'=>'require',
 			'password'=>'require|min:6|max:20|confirm',
-			
 		]);
 
 		$status = $validate->check($post);
-		
 
 		if ($status){
-			Db::table('usr_tb')->insert([
+			Db::table('usr_tb')
+			->insert([
 				'usrname'=>$post['username'],
 				'passwd'=>md5($post['password'])
 			]);

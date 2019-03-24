@@ -4,28 +4,50 @@ namespace app\index\controller;
 use think\controller;
 use think\Db;
 use app\index\model\Usr_tb;
+use app\index\model\File_tb;
+use app\index\model\Authority_tb;
+use think\file;
+use think\request;
 //use think\Debug;
 //use Config;
 
-
-
 class Index extends controller
 {
- 
     public function index()
     {
-    	return $this->fetch('index',[
-    		'username' => 'lala',
-    		'filename' => 'file1',
-    		'lastupdate' => '1day'
-    	]);
-    }
 
-    	
+        $file_co=Db::table('authority_tb')
+        ->where('co_user',session('username'))
+        ->field('file_ini_id')
+        ->group('file_ini_id')
+        ->select();
+        
+        //循环
+        for ($i=0;$i<count($file_co);$i++){ 
+        $version[$i]=Db::table('file_tb')
+        ->where('file_ini_id',implode($file_co[$i]))
+        ->max('pre_id');
+
+        $file_own[$i]=Db::table('file_tb')
+        ->where('file_ini_id',implode($file_co[$i]))
+        ->where('pre_id',$version[$i])
+        ->select();
+    };
+
+        return $this->fetch('index',[
+            'file_own' => $file_own 
+        ]);
+        //主页文件传输
+    //     for ($i=0;$i<=3;$i++){ 
+    //return $file_own;   
+    }
+   
+
+    
     public function upload()
     {
         //判断文件上传是否出错
-        dump($_FILES);
+        $file=$this->request->file("file");
         if($_FILES["file"]["error"])
         {
             echo $_FILES["file"]["error"];
@@ -33,27 +55,32 @@ class Index extends controller
         else
         {
             //控制上传的文件类型，大小
-            if($_FILES["file"]["type"]=="text/plain"&&$_FILES["file"]["size"]<1024000)
-            {
-                //找到文件存放位置，注意tp5框架的相对路径前面不用/
-                //这里的filename进行了拼接，前面是路径，后面从date开始是文件名
-                //我在static文件下新建了一个file文件用来存放文件，要注意自己建一个文件才能存放传过来的文件
-                $file_exists=Db::table('file_tb')->where('file_name',$_FILES["file"]["name"])->find();
-            
-                //判断文件是否存在
+            if($_FILES["file"]["type"]=="text/plain"||$_FILES["file"]["type"]=="application/octet-stream"&&$_FILES["file"]["size"]<1024000)
+            {            
+                $file_exists=Db::table('file_tb')->where('file_name',$_FILES["file"]["name"])->find();      
                 if ($file_exists)
                 {
-                    echo "该文件已存在！";
+                    echo "File exists!";
                     //选择是否替换
                 }
                 else
                 {
-            
-                    Db::table('file_tb')->insert([
+                    $new_file = $file->move('./static/upload');
+                    $content=file_get_contents($new_file->getpathName());
+                    $ini_id=rand();
+                    File_tb::create([
                         'file_name'=>$_FILES["file"]["name"],
-                        // 'content'=>$_FILES["file"]["content"],
-                     'create_usr'=>$session.username
+                        'file_ini_id' =>$ini_id,
+                        'content'=>$content,
+                     'create_usr'=>session('username'),
                     ]);
+                    
+                    Authority_tb::create([
+                        'file_ini_id' =>$ini_id,
+                        'co_user'=>session('username'),
+                    ]);
+                    
+                    return $this->success("upload success!");
                 }
             }
             else
@@ -62,6 +89,7 @@ class Index extends controller
             }
         }
     }
-
-    
+ 
 }
+?>
+    
