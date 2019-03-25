@@ -1,0 +1,24 @@
+我们小组的任务是实现一个multi-host file synchronise。这个multi-host file synchronise中有一个手机客户端和网页客户端（one for desktop,one for mobile）,将它俩通过服务器和局域网连接起来，并且在服务器上创建一个数据库，在数据库中存储使用这个multi-host file synchronise的所有用户信息和其中的文件信息。
+
+最后达成的整体功能为：
+首先用户可以在Desktop端和mobile端进行注册然后登录进入软件，用户的密码会用MD5算法进行加密存储到数据库中。首先进入的是主菜单界面，在主菜单里面会有文件列表，文件列表中显示所有文件和每个文件的最后上传和最后修改的时间以及添加文件按钮，然后点击具体文件将进入文件界面可以对文件进行修改和上传。哪个用户第一个上传了这个文件即为这个文件的管理者，可以对其他用户的权限进行管理，包括能否被查看、被修改和被下载以及分享权限。文件的上传者为这个文件的管理者，可以选择用户使他们拥有修改权限，可可以删除特定用户的修改权限。点击用户则进入用户个人界面，可对用户资料进行修改。
+
+-Desktop
+web使用php进行开发，主要是使用thinkphp框架，由于thinkphp已经是一个集成了很多函数的算法的框架，所以可以根据数据库名称直接连接数据库。
+
+
+-ios
+Mobile app为ios系统，使用swift语言进行开发，主要是利用Alamofire库实现http连接。，Alamofire提出一个request，将参数传到Servlet,Servlet处理http request后，连接到数据库，取出数据库中的data，返回到Servlet，Servlet返回http response到AF。
+Mobile app UI设计为：使用UI View Controller进行主页、登录、注册、创建文件等设计。（可能）使用Mapping JSON（是一种技术吗）进行解析然后使用UITable View函数？进行赋值到界面上。文本填加权限是由UI Picker View实现。
+
+-database
+使用的数据库为Mysql，设计了四个表，分别为用户表、文件表、权限表和错误日志表。用户表中存有UID，用户名和密码，其中UID为key。文件表中存有文件初始ID、文件ID、文件名、内容、创建者、创建时间、修改者以及最后修改时间，其中文件初始ID为key。权限表中有文件初始ID和UID，文件初始ID为权限表。错误日志表中设有文件ID，错误原因和错误时间，其中文件ID为key。
+
+
+- main problems
+同时上传两个文件，要做什么？告诉用户如何擦除文件？根据文件格式帮助他们修复？如何向用户显示这些选项？
+
+每个文件在创建的时候，数据库中会存有他们的版本号，原始文件的版本号为0，每修改一次上传后，版本号加1，在点进这个文件的具体页面的时候，会显示这个文件的所有版本。如果有两个用户同时修改上传文件的时候，解决的办法为：假设两个用户A、B打开的文件版本号都为0，然后用户A先修改完成进行上传，这个时候系统会检测用户A打开的文件版本号是否和这个文件的最新版本号一致，如果这个文件的最新版本号依然为0，则用户A上传成功，版本号为1。这个时候用户B再修改上传，系统检测到用户B打开的文件版本号为0，而最新的版本号为1，系统则在页面显示最新版本号的文件内容，即为A的修改后上传的文件内容，B进行阅读参考后决定是否上传，假设B决定上传自己修改后的文件，则B上传的文件版本号为2。
+
+
+When each file is created, the version number of the original file will be stored in the database. The version number of the original file is 0. After each modification, the version number is increased by 1. When you click into the specific page of this file, it will be displayed all versions of this file. If two users modify the uploaded file at the same time, the solution is as follows: Assuming that the version number of the file opened by the two users ,A and B ,is 0, and then the user A first completes the modification and uploads. At this time, the system detects whether the file version user A opened is consistent with the latest version number of this file. If the latest version number of this file is still 0, user A uploads successfully and the version number is 1. Then user B finishes the change and uploads his file . The system detects that the version number of the file opened by user B is 0, but the latest version number is 1, then the system displays the file content of the latest version number on the page, that is, the content of  the file uploaded after the modification of user A. Then user B decides whether to upload after reading the contents. Assuming that B still decides to upload the modified file, the version number of the file uploaded by user B is 2.
