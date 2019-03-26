@@ -1,0 +1,48 @@
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/static/index/css/materialize.css"  media="screen,projection"/>
+      <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
+       
+        <link rel="stylesheet" href="/static/index/css/templatemo_main.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+    </head>
+  	
+   <!--    <li><a href="">register<span class="new badge">4</span></a></li> -->
+    <body>
+    <BODY style="background-image : url( /static/index/images/edit.jpg);background-repeat:repeat;background-size: 100%;">
+     
+	<nav>
+  <div class="nav-wrapper">
+    <a href="./index" class="brand-logo">KEEP TRYING</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+    {if session('uid')}
+      <li><a href="">{:session('username')}</a></li>
+      <li><a href="{:url('Login/logout')}">log out</a></li>
+      {else /}
+      <li><a href="./login">login</a></li>
+      <li><a href="./register">register</a>
+      {/if}
+    </ul>
+    <div class="push"><!-- not put anything here -->
+</div>
+</div>
+</nav>
+<div class="content">
+	{block name='mid'}middle area{/block}	
+</div>
+</body>
+
+   <footer class="page-footer">
+          <div class="footer-copyright">
+            <div class="container">
+              KEEP TRYING
+            <a class="black-text text-lighten-4 right" href="file:///C:/Users/Amber/Desktop/web%20develop/edit.html">More Links</a>
+            </div>
+    </footer>
+
+</html>

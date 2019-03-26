@@ -1,0 +1,64 @@
+  <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Login page</title>
+	<link rel="stylesheet" href="/static/login/auth.css">
+</head>
+
+<body>
+    <BODY style="background-image : url(/static/index/images/home.jpg);background-repeat : no-repeat;background-size: 140%;">
+   
+	<div class="lowin lowin-blue">
+        <div class="lowin-brand">
+            <img src="/static/login/images/logo.jpg" alt="logo">
+                </div>
+		<div class="lowin-wrapper">
+			
+           <div class="lowin-box lowin-register">
+				<div class="lowin-box-inner">
+					<form action="register/post">
+						<p>Let's create your account</p>
+						<div class="lowin-group">
+							<label>User Name</label>
+							<input type="text" name="username" autocomplete="username" class="lowin-input">
+						</div>
+						<div class="lowin-group">
+							<label>Password</label>
+							<input type="password" name="password" autocomplete="current-password" class="lowin-input">
+						</div>
+						<div class="lowin-group">
+							<label>password confirm</label>
+							<input type="password" class="lowin-input" id="conpass" name="password_confirm" />
+				</div>
+				<div class="lowin-group">
+							<label>Introduce yourself</label>
+							<input type="text" class="lowin-input" id="info" name="info" />
+				</div>
+						<button class="lowin-btn" id="register">
+							Sign Up
+						</button>
+
+						<div class="text-foot">
+							Already have an account? <a href="./login" class="login-link">Login</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+            
+		</div>
+	
+    <footer class="lowin-footer">
+        <br>DESIGNED BY KEEPTRYING GROUP  <a href="https://kcl.ac.uk" target="_blank" ></br>
+            <br>King's College London </a></br>
+            <br></br>
+
+      </footer>
+	</div>
+
+	<script src="/static/login/auth.js"></script>
+</body>
+</html>
+

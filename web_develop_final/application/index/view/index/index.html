@@ -1,0 +1,91 @@
+  {extend name='./common/father' /}
+  {block name='mid'} 
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  
+
+  <div class="row">
+      <div class="col s3">      
+		<table class="card-panel teal lighten-5">
+        <thead>
+          <tr>
+              <th>User Detail</th>
+          </tr>
+        </thead>          
+        <tbody >
+          <tr>
+            <td>Username:{$user}</td>
+          </tr>
+          <tr>
+            <td>Create time:{$create_time}</td>
+          </tr>
+          <tr>
+            <td>Info:{$info}</td>
+          </tr>
+        </tbody>
+      </table>
+
+	  <div >
+       <table class="card-panel white lighten-2">
+        <thead>
+          <tr>
+              <th>fileID</th>
+              <th>error reason</th>
+              <th>update time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {volist name="error" id="vo" }
+            <tr>
+                  <td>{$vo.file_ini_id}</td>
+                  <td>{$vo.err_history}</td> 
+                  <td>{$vo.update_time|date="Y-m-d H:i:s"}</td>
+            {/volist}
+            </tr>  
+        </tbody>
+      </table>    
+	  </div> 
+      </div>
+
+  <div class="col s9">
+    <table class="striped">
+	        <thead>
+	          <tr>
+	              <th>fileID</th>
+	              <th>fileName</th>
+	              <th>creator</th>
+                <th>lastUpdate</th>
+	          </tr>
+	        </thead>
+          <tbody>
+          {volist name="file_own" id="k" }
+            {volist name="k" id="vo" }
+            <tr>
+                  <td>{$vo.file_ini_id}</td>
+                  <td><a href="./edit?fileid={$vo.file_id}">{$vo.file_name}</a></td>
+                  <td>{$vo.create_usr}</td> 
+                  <td>{$vo.update_time|date="Y-m-d H:i:s"}</td>
+            {/volist}
+          {/volist}
+            </tr>        
+          }
+	        </tbody>
+	</table>
+    <br>
+    <form action="index/upload" method="post" enctype="multipart/form-data" >
+          <input type="file" name="file" value="choose file"/>
+          <input type="submit" value="submit"/>
+    </form>
+    <br>
+    <form action="index/create" method="post">
+          <input class="btn btn-primary btn-block" type="submit" value="create new file"/>
+    </form>  
+  </div>
+  </div>
+ 
+      <!--JavaScript at end of body for optimized loading-->
+
+    </body>
+    {/block}
+ 
+  </html>
+        
