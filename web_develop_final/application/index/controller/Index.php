@@ -8,8 +8,6 @@ use app\index\model\File_tb;
 use app\index\model\Authority_tb;
 use think\file;
 use think\request;
-//use think\Debug;
-//use Config;
 
 class Index extends controller
 {
@@ -21,7 +19,6 @@ class Index extends controller
         ->field('file_ini_id')
         ->group('file_ini_id')
         ->select();
-        
         //循环
         for ($i=0;$i<count($file_co);$i++){ 
         $version[$i]=Db::table('file_tb')
@@ -34,15 +31,43 @@ class Index extends controller
         ->select();
     };
 
+        $user = Db::table('usr_tb')
+        ->where('usrname',session('username'))
+        ->select();
+
+        $err = Db::table('err_tb')
+            ->select();
+
         return $this->fetch('index',[
-            'file_own' => $file_own 
+            'file_own' => $file_own,
+            'user'=>$user[0]['usrname'],
+            'create_time'=> $user[0]['create_time'],
+            'info'=>$user[0]['info'],
+             'error'=>$err
         ]);
+
+
         //主页文件传输
     //     for ($i=0;$i<=3;$i++){ 
     //return $file_own;   
     }
    
-
+    public function create(){
+        $ini_id = rand();
+        File_tb::create([
+            'file_ini_id' =>$ini_id,
+            'file_name' => 'unamed',
+            'create_usr'=>session('username'), 
+                    ]);
+        Authority_tb::create([
+            'file_ini_id' =>$ini_id,
+            'co_user'=>session('username'), 
+                    ]);
+        $file = Db::table('file_tb')
+            ->where('file_ini_id',$ini_id)
+            ->select();
+        return $this->redirect("./edit",['fileid'=>$file[0]['file_id']]);
+    }
     
     public function upload()
     {
@@ -78,8 +103,7 @@ class Index extends controller
                     Authority_tb::create([
                         'file_ini_id' =>$ini_id,
                         'co_user'=>session('username'),
-                    ]);
-                    
+                    ]);     
                     return $this->success("upload success!");
                 }
             }
