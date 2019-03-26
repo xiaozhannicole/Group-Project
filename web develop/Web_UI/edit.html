@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+            
+            <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
+                <link rel="stylesheet" href="css/bootstrap.min.css">
+                <link rel="stylesheet" href="css/templatemo_main.css">
+                
+                </head>
+                <body>
+                <div id="main-wrapper">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
+                <center><h1 class="templatemo-site-title">
+                KEEP TRYING </h1>
+                </div>
+                
+                <div class="menu visible-md visible-lg">
+                <ul id="menu-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="user.html">User</a></li>
+                <li><a href="set.html">Set</a></li>
+                <li><a href="login.html">Log Out</a></li>
+                </ul>
+                </div><!-- /.menu -->
+                
+                <div class="image-section">
+                <div class="image-container">
+                <img src="images/home.jpg" id="home-img" class="main-img inactive" alt="Home">
+                <img src="images/user.jpg" id="user-img" class="inactive" alt="Testimonial">
+                <img src="images/set.jpg" id="set-img" class="inactive" alt="Contact">
+                <img src="images/edit.jpg" id="edit-img"  class="inactive" alt="Services">
+                </div>
+                </div>
+                <div class="row">
+                <div class="templatemo-content-wrapper">
+                <div class="templatemo-content">
+                
+                <section class="active templatemo-content-section">
+                <div class="col-md-8">
+                <form action="edit/update" method="GET|POST">
+                <input type="hidden" name="file_id" value={$file_id} />
+                <input type="hidden" name="pre_id_1" value={$pre_id} />
+                <input type="hidden" name="file_ini_id" value={$file_ini_id} />
+                <input type="hidden" name="creator" value={$creator} />
+                <h3>filename:</h3>
+                <input type="text" name="filename_update" value={$filename} />
+                <h3>content:</h3>
+                <textarea name="content_updte" rows="30" cols="132">{$content}</textarea>
+                <center><button type="submit" >upload</button>
+                </form>
+                
+                </div>
+                
+                <div class="col-md-4">
+                <table class="striped" style="background-color:#5F9EA0;">
+                <tbody >
+                <tr >
+                <td>filename:{$filename}</td>
+                </tr>
+                <tr>
+                <td>creator:{$creator}</td>
+                </tr>
+                <tr>
+                <td>last update:{$lastupdate}</td>
+                </tr>
+                <tr>
+                <td>coodinator:{$coodinator}</td>
+                </tr>
+                {if session('uid')}
+                <form action="edit/add_co">
+                <input type="hidden" name="file_ini_id" value={$file_ini_id} />
+                <tr>
+                <td style="font-size:16px;"><a href="javascript:get_user_tall()">add coodinator(by username):</a><br>
+                <input type="text" style="width:100%;background-color:transparent;outline:none; border:0px;border-bottom:1px solid #008080;"  name="coodinator"><br></br>
+                <button style="float:right;margin-right:15px;">add</button>
+                </td>
+                </tr>
+                </form>
+                {/if}
+                </tbody>
+                </table>
+                
+                
+                <div>
+                <table class="striped">
+                <thead>
+                <tr>
+                <th>file id</th>
+                <th>update user</th>
+                <th>update time</th>
+                </tr>
+                </thead>
+                <tbody>
+                {volist name="old_version" id="vo" }
+                <tr>
+                <td><a href="./edit?fileid={$vo.file_id}">{$vo.file_id}</a></td>
+                <td>{$vo.update_usr}</td>
+                <td>{$vo.update_time}</td>
+                {/volist}
+                </tr>
+                </tbody>
+                </table>
+                
+                </div>
+                
+                </div>
+                
+                
+                
+                </div>
+                
+                </section><!-- /.services-text -->
+                
+                <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
+                <p class="footer-text">Made by Keep Trying Group
+                From King's College London</a></p>
+                </div><!-- /.footer -->
+                </div>
+                
+                </div><!-- /#main-wrapper -->
+                
+                <div id="preloader">
+                    <div id="status">&nbsp;</div>
+                </div><!-- /#preloader -->
+                
+                <script src="js/jquery.min.js"></script>
+                <script src="js/jquery.backstretch.min.js"></script>
+                <script src="js/templatemo_script.js"></script>
+                
+                <script type='text/javascript' src='js/logging.js'></script>
+                </body>
+</html>
+
