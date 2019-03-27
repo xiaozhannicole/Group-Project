@@ -1,0 +1,34 @@
+%我们小组的任务是实现一个multi-host file synchroniser 。这个multi-host file synchroniser中有一个手机客户端和网页客户端（one for desktop,one for mobile）,将它俩局域网连接起来，通过服务器上连接到一个数据库，在数据库中存储使用这个multi-host file synchronise的所有用户信息和其中的文件信息。ios mobile client 和 desktop client 
+
+
+\noindent The task of our team is to implement a multi-host file synchroniser. A multi-host file synchroniser usually comprises of a mobile client and a desktop client which are connected through LANs. By connecting to a database through the server, and storing the multi-host in the database which contains all user information and its file information, our multi-host file synchroniser is able to achieve functionalities as follows.
+
+%最后达成的整体功能为：
+%首先用户可以在desktop client和mobile client进行注册然后登陆进入软件，用户的密码会用MD5加密算法加密后存储到数据库中。登陆成功后首先进入的是主菜单界面，主菜单界面显示该登陆用户有权限查看和修改的文件的文件列表，同时也显示了每个文件的最后修改时间和修改用户。用户同时可以在这个界面进行上传和创建文件。点击具体文件会进入到这个文件的文件界面，用户可以在这个界面进行修改和上传。同时，文件的创建者即为这个文件的管理者，可以对其他用户的权限进行管理，包括查看权限和修改权限，也可以删除特定用户的修改权限。除此之外还有用户界面，可以在编辑用户的资料和修改密码。
+
+
+\vspace{0.2cm}
+\noindent First, the user can register with the desktop client and the mobile client, and log in to the software. The user's password is encrypted by the MD5 encryption algorithm and is stored in the database. After the successful login, the main menu interface is entered. The main menu interface displays the file list which contains the files that the login user has permission to view and modify, and also displays the last modification time of each file and the modified user. Users can also upload and create files in this interface. Clicking on a specific file will take you to the file interface of this file, and the user can modify and upload it through this interface. At the same time, the creator of the file is the administrator of the file, which can manage the permissions of other users, including viewing permissions and modifying permissions, and also deleting the modification permissions of specific users.In addition to this there is a user interface where you can edit the information of user and change the password.
+
+%-desktop
+%desktop端我们制作了一个web，在 Macintosh Apache MySQL PHP 平台下使用php进行开发。Macintosh Apache MySQL PHP 专门用来在 Mac 环境下搭建 Apache、MySQL、PHP 平台。主要使用的是为简化企业级应用开发和敏捷WEB应用开发而诞生的thinkphp框架。
+ 
+%-ios
+%Mobile端我们制作了一个ios软件，使用swift5在xcode软件中进行开发，利用基于Swift 的HTTP 网络库—Alamofire网络开发框架实现核心功能，演示时我们将使用模拟器展示软件效果。
+
+%在代码实现时，我们使用MVC设计模式，将程序的输入、处理、和输出分开，增强了代码美学，使代码更加灵活，重用性更高
+
+% main problems
+
+%每个文件在创建的时候，数据库中会存有他们的版本号，原始文件的版本号为0，每修改一次上传后，版本号加1，在点进这个文件的具体页面的时候，会显示这个文件的所有版本。如果有两个用户同时修改上传文件的时候，解决的办法为：假设两个用户A、B打开的文件版本号都为0，然后用户A先修改完成进行上传，这个时候系统会检测用户A打开的文件版本号是否和这个文件的最新版本号一致，如果这个文件的最新版本号依然为0，则用户A上传成功，版本号为1。这个时候用户B再修改上传，系统检测到用户B打开的文件版本号为0，而最新的版本号为1，系统则在页面显示最新版本号的文件内容，即为A的修改后上传的文件内容，B进行阅读参考后决定是否上传，假设B决定上传自己修改后的文件，则B上传的文件版本号为2。
+
+\vspace{0.2cm}
+\noindent When each file is created, the version number of the original file will be stored in the database. The version number of the original file is 0. After each modification, the version number is increased by 1. When you click into the specific page of this file, all versions of this file will be displayed. If two users modify the uploaded file at the same time, the solution is as follows: Assuming that the version number of the file opened by the two users, A and B, is 0, and then the user A first completes the modification and uploads. At this time, the system detects whether the file version user A opened is consistent with the latest version number of this file. If the latest version number of this file is still 0, user A uploads successfully and the version number is 1. Then user B finishes the change and uploads his file. The system detects that the version number of the file opened by user B is 0, but the latest version number is 1, then the system displays the file content of the latest version number on the page, that is, the content of  the file uploaded after the modification of user A. Then user B decides whether to upload after reading the contents. Assuming that B still decides to upload the modified file, the version number of the file uploaded by user B is 2.
+
+%multi-host file synchroniser we made 把文件上传到服务器上，不占用电脑空间，只有在有网络的情况下才可以进行操作。同时这个synchroniser保证文件的隐秘性，文件创建者为这个文件管理者，自已自主选择给哪个用户查看权限和修改权限。当前市面上有很多类似的平台可以实现这些功能，例如Google drive和dropbox，相比较已上市的平台，虽然成熟度上相比我们还是有很大的不足，但是我们synchroniser的优点在于系统自身的高度自主性，在出现同步上传矛盾的时候，不依赖于一些特定的系统规则，而是把同步上传的版本显示给用户进行选择，这样既不违反时间顺序原则，也人为的避免了关于文件内容的矛盾。我们的project由于资源、资金、时间和技术的限制，导致没有做出一个非常成熟可以直接让大众使用的软件，但是我们小组对文件同步云端的未来非常看好，可以也希望在以后的工作能有机会再次接触这个方面，弥补当前软件的不足做出更好的软件。
+\vspace{0.2cm}
+\noindent The multi-host file synchroniser we made uploads files to the database without taking up computer storage space when there is a network. At the same time, the synchroniser guarantees the confidentiality of the file. The file creator is the file manager, and the manager can choose which user to own the view permission and the modification permission. There are many similar platforms on the market that can implement these functions, such as Google drive and dropbox. Compared with the platform already listed, although we still have a lot of shortcomings in maturity, the advantage of our synchroniser is the high autonomy of the system itself. In the case of synchronous upload conflicts, it does not depend on some specific system rules, but displays the synchronously uploaded version to the user for selection, which does not violate the chronological principle, and artificially avoids the content of the file contradiction. Due to limitations in resources, funding, time and technology, our project did not make a very mature software that can be directly used by the public, but our team is very optimistic about the future of the file synchronization cloud, and we hope that we can have a future work opportunity to reach out to this aspect again, make up for the lack of current software to make better software.
+
+\noindent The rest of the report is structured as follows. In Section \ref{Sec:Sec2}
+
+

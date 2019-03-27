@@ -1,0 +1,44 @@
+
+\subsection{Significant Implementation Details}
+\noindent After several months of unremitting efforts, we have tried many methods. From scratch, we have implemented several key functions of the original design step by step, and based on this, we have continuously improved and added some additional functions. We will introduce them separately from the web platform and the ios platform.
+
+\subsubsection{Web Client}
+\noindent User login interface introduction:
+\begin{itemize}
+    \item Registration function: When a user registers in this web page, he/she only needs to provide user-defined user name and password, after which the system will automatically assign a UID to the user. In the background system operation, the system background will automatically distinguish different users according to their UID.
+    \item Login Function: In the process of implementing the login function, we extra use the channel encryption method to encrypt the user password.To be specific, we use the hash algorithm to ensure the security of the user. Because the hash function is unidirectional, once the user name and password are provided when the user registers, the system automatically assigns the UID background to distinguish the user according to the UID.
+\end{itemize}
+
+\noindent Home function introduction:
+\begin{itemize}
+    \item File Upload
+    \item Display files with modified permissions
+    \item File Sharing
+    \item File Download
+\end{itemize} 
+
+\noindent Edit page function introduction
+\begin{itemize}
+    \item Content modification
+%    \vspace{-0.3cm}
+    \item File name modification: Logic: file is identified based on file id
+    \item File creator can modify permissions.The historical version can be found and you can go back to the historical version for editing. Edit this version to the current version.
+    \item Basic information about the file The person and time the file was last updated.
+\end{itemize}
+
+\noindent User Page Introduction
+
+
+
+\subsection{Code Fragments and Explanation}
+\subsubsection{Code Explanations of Desktop Client}
+\input{codeweb.tex}
+
+
+\subsubsection{IoS Mobile Client}
+
+\subsection{Software Testing}
+%关于ios客户端的unit testing
+
+
+\noindent Our IoS mobile client uses the XCTest framework that comes with XCode. The word framework contains a class. All test classes inherit from this class. The name of this class is called XCTestCase. According to the regulations, the names of all test methods should start with the test and do not contain any parameters to ensure that these test methods are automatically executed when the test is run. In each test method, we call the function XCTAssert * to assert whether an operation was successful.
