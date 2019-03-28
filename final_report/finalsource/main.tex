@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+
+\textwidth 15cm \oddsidemargin 1cm \topmargin -0.5cm \textheight 22cm \footskip 1.5cm 
+% \usepackage{epsfig}
+
+    
+\usepackage{longtable}
+\usepackage{supertabular}
+\usepackage{hyperref}%pdf段落链接
+\usepackage{natbib}%references
+\usepackage{graphicx}%photos
+\usepackage{indentfirst} %首行缩进
+\usepackage{fancyhdr}%页眉页脚等
+\usepackage{multirow}%表格的强制换行
+\usepackage{verbatim}%多行注释
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{caption}
+\usepackage{graphicx, subfig}
+% \usepackage{biblatex}
+% \addbibresource{references.bib}
+\usepackage{natbib}
+% \graphicspath{{/Users/xiaozhan/Documents/groupproject}}
+
+\def\n{\noindent}
+
+\pagestyle{plain}
+\pagestyle{fancy}%logo
+\rfoot{\includegraphics[scale=0.21]{kcl.png}} 
+\cfoot{\thepage} 
+
+\lhead{King's College London}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\begin{titlepage}
+\title{\Huge $\mathbf{7CCSMGPR: 
+Final \; Report}$}
+\author{\Large \textbf{Group Name: Keep Trying} }
+\date{28/03/2019}
+\end{titlepage}
+
+
+\begin{document}
+\maketitle
+\input{author.tex}
+\thispagestyle{empty}
+
+\newpage
+\input{mulu.tex}
+\thispagestyle{empty}
+
+
+
+
+\newpage
+\setcounter{page}{1}
+\vspace{5cm}
+
+
+\section{Introduction}
+\input{intro.tex}
+
+\section{Review}
+\label{Sec2}
+\input{review.tex}
+
+\section{Requirements and Design}
+\label{Sec3}
+\input{rd.tex}
+
+\section{Implementation}
+\label{Sec4}
+\input{implementation.tex}
+
+\section{Teamwork}
+\label{Sec5}
+\input{teamwork.tex}
+
+\section{Evaluation}
+\label{Sec6}
+\input{evaluation.tex}
+
+\section{Peer Assessment}
+\label{Sec7}
+\input{passesment.tex}
+
+
+
+
+% \printbibliography
+% \section{reference}
+% \begin{thebibliography}{9}
+
+% \bibitem{adams1995hitchhiker}
+
+% \end{thebibliography}
+
+
+\clearpage
+\addcontentsline{toc}{section}{ References} %向目录中添加条目，以章的名义
+\bibliographystyle{unsrt}
+\bibliography{references}
+\appendix
+
+\end{document}
+
+
+
+

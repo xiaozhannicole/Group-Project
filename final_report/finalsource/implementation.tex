@@ -1,0 +1,167 @@
+\noindent In this section, we decided to describe the most significant implementation details and quote code fragments of our project with brief explanation. Finally, we noticed how we tested our software.
+
+\subsection{Significant Implementation Details}
+\noindent After several months of unremitting efforts, various methods have been tried. From scratch, we implemented several key functions of the original design step by step, and based on this, we have continuously improved and added some additional functions. We introduce them separately for the web client and the iOS mobile client.
+\subsubsection{Desktop Client}
+\noindent User login Interface Introduction:
+\begin{itemize}
+    \item \textbf{Registration Functions}: When registering in this web page, users only need to provide user-defined user name and password, and the system will automatically assign a UID to them. In the background system operation, the system background system will automatically distinguish different users according to their UID. The final interface of registration function is shown in Fig.\ref{register}.
+    
+    \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{signinui.jpeg} 
+     \caption{Registration Interface}
+     \label{register}
+    %  \vspace{-1em}
+     \end{figure}
+    
+    \item \textbf{Login Interface Functions}: In the process of implementing the login function, we extra use the channel encryption method to encrypt the user password. To be specific, we use the hash algorithm to ensure the security of the user. Because the hash function is unidirectional, once the user name and password are provided when the user registers, the system automatically assigns the UID background to distinguish the user according to the UID. The final interface of login function is shown in Fig.\ref{login}.
+    
+      \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{loginui.jpeg}
+     \caption{Login Interface}
+     \label{login}
+     \vspace{-1em}
+     \end{figure}
+     
+     \item \textbf{Password Changing Interface Functions}: In this page, users can change their password and finally login to the system by using their new password. The final interface of changing the password is shown in Fig.\ref{change}.
+      
+      \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{changepasswdui.jpeg}
+     \caption{Password Changing Interface}
+     \label{change}
+     \end{figure}
+     
+    
+\end{itemize}
+
+
+\noindent Homepage function introduction:
+\begin{itemize}
+     \item \textbf{User Detail}: This module shows the user's details, including the user name, creation time and a simple slogan.
+     \item \textbf{Error News}: This module shows all conflicting files, including the id of the file, the reason of the error, and the last update time of the file.
+     \item \textbf{Your Files}: In this module users can manage their own files, including the existing file id, name, creator and last update time. In addition, users can also create new files via the \texxx{create\_new\_file} button, or select a document upload from the local storage.
+
+\end{itemize}
+
+
+
+\noindent The final interface of Homepage is shown in Fig.\ref{home}.
+    \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{homep.jpeg}
+     \caption{Homepage}
+     \label{home}
+     \end{figure}
+    
+
+
+
+\noindent Edit page functions introduction
+\begin{itemize}
+    \item \textbf{Content modification}: This module contains file content modification and the filename modification.
+   \item \textbf{File Information}: You can see the file information in this module, including the file name, the creator of the file, the time of the last modification, and the owner of the file permissions. In addition, if the user is the creator of the file, this module also displays the Add and Remove buttons to modify the permissions of the file.
+    \item \textbf{File List}: this module shows all the files in this system, including the file id, the file updater and the latest update time.
+\end{itemize} 
+    
+\noindent The final interface of file edit page is shown in Fig.\ref{edit}.    
+     \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{fileeditui.jpeg}
+     \caption{File Edit Page}
+     \label{edit}
+     \end{figure}
+    
+    
+
+
+\noindent Comparison Interface Introduction
+\vspace{0.2cm}
+\newline \noindent This is the comparison page when conflicts exist. 
+
+  \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{compare.jpeg}
+     \caption{comparison page}
+     \label{compare}
+\end{figure}
+
+  \begin{itemize}
+      \item \textbf{Filename}: Simply shows the name of the file.
+      \item \textbf{Your Version}: The version of the file when the current user is editing and the user can have editing authority.
+      \item \textbf{Latest Version}: The user who login to this page only possess read permission, it shows the latest version of this file.
+      \item \textbf{Choose Button}: Users can manually select the version they want to save and click this button to save.
+  \end{itemize}
+\noindent The final interface is shown is Fig.\ref{compare} 
+%   \begin{figure}[H]
+%      \centering
+%      \includegraphics[width=.8\textwidth]{compare.jpeg}
+%      \caption{comparison page}
+%      \label{compare}
+% \end{figure}
+    
+
+\subsubsection{iOS Mobile Client}
+\noindent The main functions of iOS mobile client almost the same as the desktop client. And the final UI interface is shown in Fig.\ref{iuie} and the main page of 
+access permissions is shown in Fig.\ref{au} .
+
+  \begin{figure}[H]
+     \centering
+     \includegraphics[width=.8\textwidth]{iui.png}
+     \caption{iOS Client UI}
+     \label{iuie}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\textwidth]{authset.png} %图片文件的相对路径
+  \caption{List of iOS access permissions} %caption是图片的标题
+  \label{au} %此处的label相当于一个图片的专属标志，目的是方便上下文的引用
+\end{figure}
+
+
+
+
+
+\subsection{Code Fragments and Explanation}
+\subsubsection{Code Explanations of Desktop Client}
+\input{codeweb.tex}
+
+
+\subsubsection{Code Explanations of iOS Mobile Client}
+\input{codeios.tex}
+
+\subsection{Software Testing}
+\noindent In order to ensure that the system is working properly, we need to conduct a series of rigorous and effective tests to discover potential problems with the software. Web testing and iOS client testing vary from one carrier to another, so system testing and details are different. Web testing is B/S architecture and browser-based, in the contrary, iOS client testing is C/S architecture. We tested the both ends of our system, and more specific information will be  described as follows:
+
+\vspace{0.3cm}
+\noindent \textbf{Desktop Client Testing:}
+\vspace{0.3cm}
+\newline \noindent Our desktop client uses the ThinkPHP framework, but ThinkPHP itself does not provide the corresponding unit testing support, but we combined some of the functions in ThinkPHP into a library by learning from others' experience and ideas. This library can be used for unit testing of ThinkPHP to further ensure the quality of the software. The characteristics of this method are: easy to use, convenient and non-invasive.
+
+\begin{itemize}
+    \item Create a new folder test under the \texttt{Appcation}, and create a new test class named \texttt{IndexTest.php}.
+    \item Concrete code implementation and annotation are showned in Fig.\ref{php}.
+  
+   \begin{figure}[H]
+  \centering
+  \includegraphics[width=.8\textwidth]{php.png} %图片文件的相对路径
+  \caption{ThinkPHP unit testing}
+  \label{php} %此处的label相当于一个图片的专属标志，目的是方便上下文的引用
+ \end{figure}
+    
+     \item Then run phpunit for unit testing.
+\end{itemize}
+
+
+
+%关于iOS客户端的unit testing
+\vspace{0.3cm}
+\noindent \textbf{iOS Client Testing:}
+\vspace{0.3cm}
+\newline \noindent Our iOS mobile client uses the XCTest framework that comes with XCode. The word framework contains a class. All test classes inherit from this class. The name of this class is called XCTestCase. According to the regulations, the names of all test methods should start with the test and do not contain any parameters to ensure that these test methods are automatically executed when the test is run. In each test method, we call the function XCTAssert * to assert whether an operation was successful. Such automated testing of iOS development saves effort and time for developers like us.
+  \begin{itemize}
+      \item \textbf{iOS UI Testing}: iOS and Xcode has automated testing, click \texxxt{Command+U} in the UIText file to run the test procedure, and then use the \texxxt{red} button in the console to automatically test and generate the corresponding test code.
+  \end{itemize}

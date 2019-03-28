@@ -1,0 +1,85 @@
+\subsection{Advantages}
+\begin{itemize}
+    \item After later development and testing, we found that the MVC development model selected during the initial design process fits well with our project, Which explains that we have worked effectively during the initial resource browsing and filtering process, which finally help us to reduce the workload for subsequent development.
+    \item Our code is written in a specification with a clear structure. The proportion of annotations is also appropriate, so it is very convenient for us to read and facilitate the reading and cooperation of other team members.
+    \item In addition to special circumstances such as temporary scheduling, our team regularly organizes group meetings on Tuesdays and Fridays to discuss progress, learning and solving current problems. The members of the group are well-coordinated, and everyone has contributed to this group project and made their own contributions without disputes and irresponsible members.
+    \item Before doing this project, the members of the group did not contact or use github. In the past few months, we gradually learned how to use github to save our own code and files from the blank state at the beginning.
+    
+\end{itemize}
+
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item In the editing function of the file, at present we can only edit the .txt file, and the files in other formats have not been implemented yet.
+    \item Although we have been learning how to use github, our technology is not very skilled when compared to the students who already have using experience. The frequency of using github of our group is not particularly high. Since we have more meetings per week, we also have other software to communicate within the group, so there is less balance between github interaction and other ways of communication.
+\end{itemize}
+
+\subsection{Differences from the Initial Idea}
+\begin{itemize}
+    \item Before we start doing this project, we intend to use the OT(Operation Transform) algorithm, which is a technology for supporting collaborative computing functions and applications to achieve collaboration.
+    \item Later, in the process of studying this algorithm, we found that although this algorithm has advantages in operation conversion and processing collaborative editing, for our project, this algorithm is too complicated, and we want to achieve the core functions. It is not completely compatible. If we want to achieve simultaneous editing of files, the focus is not on OT-oriented design. That is, in design, the principle that is more conducive to the implementation of OT algorithm is the first, and the principle of reducing network transmission is second. In practice, it is necessary to have enough storage space to buffer the traffic difference between the two streams. The client OT must be a message that is bypassed, not a message processed by the database. This is more difficult for our system design and gpu requirements. Firstly, we searched for relevant materials about OT technology from the Internet since our team members are not familiar with this technology. There are various online instructions about OT algorithms using different computer languages such as Java, PHP, and Python.  But unfortunately, the tutorials using swift that our system gonna use are rare. In the process of trying to use OT, although it is easy to understand the principle of this technology, the actual operation is quite complicated. The reason why is that the OT algorithm is dependent on the order, and the different order will lead to different results. In addition, there will be some problem if the original file changed before the modification submit as the modification is based on the old version. Therefore, OT technology did not work well in our system, the bugs always appeared and we even cannot find solutions to solve them.So after finding a more simple and easy to implement method, we gave up the OT algorithm.
+    
+    \item We originally planned to use java to write mobile apps. But then we chose iOS to develop more commonly used swift. Swift supports both object-oriented programming and functional programming. Swift is more powerful than Java and more user-friendly. In addition, Xcode has a ready-made swift framework that makes our use and design easier.
+\end{itemize}
+
+\subsection{Detailed Evaluations}
+
+\noindent Evaluations of the web front-end design and implementations:
+\begin{itemize}
+ 
+%songsong qianduan
+    \item During the process of the development, we use the GIF image as the background of login page with a cute logo in order to make the webpage more vibrant, but the background is not coherent as it is hard to find a high-definition picture with coherent animation. when entering the index page, we originally prepared to use the uniform background color, but this is easy for users to feel boring, so we set different background images for each function page, and the pictures are all about nature, which makes the webpage more ornamental and eye-catching. For the choice of detail colors, we use the dark blue and gray that are generally accepted by the public.
+    \item Except for the main function we have check user information, reset password and logout functions. Because the other three functions are auxiliary functions, we simplify the function bar and put it in the upper right corner. Thus, the user will see the main function page directly after login.
+\end{itemize}
+
+
+\noindent Evaluations of literature review and materials searching:
+\begin{itemize}
+    
+%xiaoxue wenxian
+    \item At the beginning, in order to make the progress of the post work progress, we found a lot of literature about file synchroniser. In the following group discussion, we classified the literature, which is roughly divided into front-end class, background class and function class. Then we learn the literature of the respective department responsible to determine the language of development, the algorithms needed, and the functions required by file synchroniser. The documents that are found later will be more practical, such as finding the iOS development language swift5, the main framework used by web development, , and the related literature about the MVC development model. The teammates who are looking for the literature are going to learn the specific functions to be implemented on the file synchroniser, such as the most basic editing and uploading, and constantly improve the functions and work with the coding students to communicate and learn related technologies together. In the final closing section, we will look at the literature to understand the meaning of this file synchroniser and its current status and prospects, and to understand the whole project more deeply.
+\end{itemize}
+
+\noindent Evaluations of the implementation of the main function:
+\begin{itemize}
+    \item As for how to solve the conflict problem, our group has gradually abandoned some algorithms and models that run the failure and do not support the development environment we choose in the process of continuous learning and practice. Eventually I thought of detecting conflicts by detecting the version number and comparison. This method is simple and easy to understand and is very fluent from a logical level. It is also convenient to convert to code implementation, and does not cause redundant work and complicated calculation comparison. It can be considered that the needs and ideas of the project have been completed and the main functions have been realized.
+\end{itemize}
+
+\noindent Evaluations of database design:
+\begin{itemize}
+    \item All entities and their properties of the database are meaningful. The naming of entities and attributes is also straightforward and easy understanding. Each value can be extracted for use successfully. The relationship between two entities is one-to-one, which reduces the complexity of extracting and importing data into the database.
+
+    \item For database security, when the database is under attack and the data table is exposed, the attacker cannot see the user password that has been encrypted, which protects the privacy and security of the system user. But the file list is not encrypted, thus the attacker can read the file content directly and then easily tamper with or steal the information.
+
+\end{itemize}
+
+\noindent Evaluations of ThinkPHP usage:
+\begin{itemize}
+    \item We use PHP to write the server side of the web. In the beginning, we programmed it directly in PHP instead of using the framework. This method works well in the static web page, but we find it inconvenient when we want to connect it to the database or add links to each other. After discussion, we re-planned the architecture of the website and determined to use the framework of ThinkPHP, because of its perfect integrated configuration which can simplify the step of the database connection.
+    \item Although this experience took a lot of time and effort, timely re-planning made our project smooth and even better. Besides, our team members also have a better understanding of PHP and ThinkPHP in the process.
+
+\end{itemize}
+
+\noindent Evaluations of swift usage:
+\begin{itemize}
+    \item The swift language is one of the common languages developed by iOS. It is fast, secure and modern. Before the project started, we didn't have any knowledge of the language. After this period of study, we gradually understood how to use the swift language for development. And before our project was completed, swift was updated with a new version. The updated features were somewhat different from the previous ones, and we were able to update and improve in time.
+\end{itemize}
+
+
+\subsection{Future Work}
+
+\noindent The future work contains five sides:
+
+\begin{itemize}
+    \item The function downloading is needed when we only have uploading and sharing currently. To implement this function, there are two typical ways. Firstly, we think about the standard URL download which is embedding an URL hyperlink in the web page and then downloading using a standard HTTP GET request. However, the drawback of this method is that the path of the file is completely exposed, which leads to a low security and privacy of the website. The second method is to submit the form, submitting the parameters to the server-side dynamic script by using POST request, and then the server-side script returns the output binary stream to the browser for download. This downloading method is not only available for the specific files on server but also for the data that dynamically generated by server. We will experiment with both methods and choose the one that works best.
+    \item Various privilege will be set. Now, the users can directly view and modify the file when the file creator add them. In the future, we will divide permissions into read, write, and operation which contains deleting, downloading and sharing file. The owner of a file will have both these three permissions on the file initially. Besides, only the owner can edit the privilege of the file and he/she can let other users to only read, only operate or do nothing on the specific file as they want. To achieve this function, we will need to build the privilege table for each file, and the table should be automatically generated and deleted with the file.
+    \item At present our project can only support the operation on the file that browser can open directly like txt. We will improve the system to handle different types of files like excel and pdf. 
+    \item Our project is based on local database without server to save time and money as the lease of the server is expensive, and the connection to the server is complicated, which involves licensing, installation, maintenance, support, and patching associated with the operating system. However, Serverless computing is not suitable for workloads with high computing performance requirements due to the limitations on resources, and there are many application components in the serverless architecture, so the system is also in high risk to be attacked. Thus, in the future work, we will try to connect our system to the server.
+    \item The file table in the database will be encrypted as it can be read directly and malicious tamped when being attacked. We have encrypted the user password with the hash algorithm, but the hash algorithm is irreversible, so we are going to find other encryption algorithms to encrypt the file content. Most of the common encryption methods are one-way and irreversible, we consider to encrypt the content during the transmission process, which means we are going to use protocol encryption like HTTPS.
+
+\end{itemize}
+
+
+
+
+
